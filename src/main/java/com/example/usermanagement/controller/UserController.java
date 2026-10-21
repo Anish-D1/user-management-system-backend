@@ -25,7 +25,11 @@ import org.springframework.http.ResponseEntity;
 
 
 @RestController		
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+	    "http://localhost:5173",
+	    "http://localhost:5174",
+	    "https://user-management-system-frontend-swart.vercel.app"
+	})
 public class UserController {
 	
 	private UserService userService;
