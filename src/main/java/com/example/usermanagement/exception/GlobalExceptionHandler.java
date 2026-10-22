@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.dao.DataIntegrityViolationException;
 
 
 @RestControllerAdvice
@@ -32,5 +33,11 @@ public class GlobalExceptionHandler {
 	      );
 
 	    return errors;
+	}
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	public String handleDataIntegrityViolation(
+	        DataIntegrityViolationException ex) {
+	    return "Email already exists or the data violates a database constraint.";
 	}
 }
